@@ -10,6 +10,11 @@ Original             |  Converted
 :-------------------------:|:-------------------------:
 ![](./assets/example.png)  |  ![](./assets/example-converted.png)
 
+## Similar projects
+[Ascii-py](https://github.com/LeadSeason/Ascii-py)  
+[BB-to-xterm](https://github.com/LeadSeason/BB-to-xterm)  
+[ColorMatch-py](https://github.com/LeadSeason/ColorMatch-py) Initially made in python but remade in cpp for better performace.
+
 ## Build
 `cmake -B build -S . && cmake --build build --parallel`
 
