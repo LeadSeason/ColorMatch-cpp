@@ -46,25 +46,23 @@ int GetDistance(raylib::Color current, raylib::Color match)
     return (rDiff * rDiff) + (gDiff * gDiff) + (bDiff * bDiff);
 }
 
-int FindNearestColor(std::array<raylib::Color, COLOR_ARRAY_SIZE> colorList,
+raylib::Color FindNearestColor(std::array<raylib::Color, COLOR_ARRAY_SIZE>& colorList,
                      raylib::Color current)
 {
     int shortestDistance = INT_MAX;
-    int index = -1;
+	raylib::Color closestColor;
 
-    for (int i = 0; i < COLOR_ARRAY_SIZE; i++)
+    for (raylib::Color color : colorList)
     {
-        auto match = colorList[i];
-        int distance;
-        distance = GetDistance(current, match);
+        int distance = GetDistance(current, color);
 
         if (distance < shortestDistance)
         {
-            index = i;
+			closestColor = color;
             shortestDistance = distance;
         }
     }
-    return index;
+    return closestColor;
 }
 
 raylib::Image ConvertImage(std::string imagePath)
@@ -86,7 +84,8 @@ raylib::Image ConvertImage(std::string imagePath)
             raylib::Color pixelColor = burger.GetColor(pixelPosition);
             burger.DrawPixel(
                 pixelPosition,
-                colorList[FindNearestColor(colorList, pixelColor)]);
+                FindNearestColor(colorList, pixelColor)
+			);
         }
     return burger;
 }
